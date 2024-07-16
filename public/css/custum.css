@@ -1,0 +1,24 @@
+/* public/css/custom.css */
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.hero {
+    padding: 60px 0;
+}
+
+.section {
+    padding: 60px 0;
+}
+
+.section h2 {
+    margin-bottom: 40px;
+}
+
+.card {
+    border: none;
+}
+
+.card .card-body {
+    padding: 15px;
+}
