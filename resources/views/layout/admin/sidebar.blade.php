@@ -91,7 +91,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDomaines"
                     aria-expanded="true" aria-controls="collapseDomaines">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Domaines</span>
+                    <span>Domaines/Categories</span>
                 </a>
                 <div id="collapseDomaines" class="collapse" aria-labelledby="" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -99,8 +99,8 @@
 
 
                         <div class="collapse-divider">
-                            <a class="collapse-item" href="{{ route('create.formation') }}">Ajout de Domaines</a>
-                             <a class="collapse-item" href="{{ route('listes.formation') }}">Listes des Domaines</a>
+                            <a class="collapse-item" href="{{ route('categories.create') }}">Ajout de Domaines</a>
+                             <a class="collapse-item" href="{{ route('categories.index') }}">Listes des Domaines</a>
                         </div>
 
                     </div>

@@ -14,6 +14,12 @@ class Formation extends Model
             'desc',
             'photo',
             'prix',
-            'doc'
-        ];
+            'doc',
+            'categorie_id'
+    ];
+
+    public function categorie()
+    {
+        return $this->belongsTo(Categorie::class);
+    }
 }

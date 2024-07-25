@@ -173,9 +173,9 @@ class ProduitController extends Controller
         }
         return redirect()->route('home')->with('success','Produit retiré du panier avec succès');
     }
-    public function home(){
-        $produits = Produit::all();
-        return view('welcome', compact('produits'));
-    }
+    // public function home(){
+    //     $produits = Produit::all();
+    //     return view('welcome', compact('produits'));
+    // }
 
 }

@@ -4,17 +4,23 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\FormationController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/home', function () {
-    return view('welcome');
-})->middleware(['auth', 'verified'])->name('home');
-Route::get('/', function () {
-    return view('welcome');
-})->middleware(['auth', 'verified']);
+// Route::get('/home', function () {
+//     return view('welcome');
+// })->middleware(['auth', 'verified'])->name('home');
+// Route::get('/', function () {
+//     return view('welcome');
+// })->middleware(['auth', 'verified']);
 /* Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard'); */
+
+Route::get('/home', [HomeController::class, 'create'])->middleware(['auth', 'verified'])->name('home');
+Route::get('/', [HomeController::class, 'welcome'])->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -55,9 +61,9 @@ Route::resource('products', ProduitController::class);
 Route::get('/admin/dashboard/Formation-listes', [App\Http\Controllers\FormationController::class, 'index'])->name('listes.formation');
 Route::get('/admin/dashboard/Formation-create', [App\Http\Controllers\FormationController::class, 'create'])->name('create.formation');
 Route::post('/admin/dashboard/Formation-store', [App\Http\Controllers\FormationController::class, 'store'])->name('formations.store');
-Route::post('/admin/dashboard/Formation-store', [App\Http\Controllers\FormationController::class, 'update'])->name('formations.update');
-Route::post('/admin/dashboard/Formation-edit', [App\Http\Controllers\FormationController::class, 'edit'])->name('formations.edit');
-Route::post('/admin/dashboard/Formation-destroy', [App\Http\Controllers\FormationController::class, 'destroy'])->name('formations.destroy');
+Route::post('/admin/dashboard/Formation-update', [App\Http\Controllers\FormationController::class, 'update'])->name('formations.update');
+Route::get('/admin/dashboard/Formation-edit/{id}', [App\Http\Controllers\FormationController::class, 'edit'])->name('formation.edit');
+Route::delete('/formations/{id}', [FormationController::class, 'destroy'])->name('formation.destroy');
 
 
 // Route::middleware(['auth', 'userMiddleware'])->group(function(){
@@ -65,6 +71,15 @@ Route::post('/admin/dashboard/Formation-destroy', [App\Http\Controllers\Formatio
 // Route::get('dashboard', [UserController::class, 'index'])->name('dashboard');
 
 // });
+
+// --------categories-------
+Route::get('/categories/create', [FormationController::class, 'create'])->name('categories.create');
+Route::get('/categories', [FormationController::class, 'listCategories'])->name('categories.index');
+Route::get('/categories/{id}', [FormationController::class, 'showCategory'])->name('categorie.show');
+Route::resource('categories', CategorieController::class);
+// --------formation-------
+Route::get('/Formation-show', [App\Http\Controllers\FormationController::class, 'show'])->name('formations.show');
+
 
 // --------preinscriptions-------
 
@@ -88,6 +103,6 @@ Route::get('faq', function(){
 Route::get('/remove-from-cart/{id}', [App\Http\Controllers\ProduitController::class, 'removeFromCart'])->name('remove.from.cart');
 Route::get('/cart', [App\Http\Controllers\ProduitController::class, 'cart'])->name('cart');
 Route::post('/add-to-cart/{id}', [App\Http\Controllers\ProduitController::class, 'addToCart'])->name('add.to.cart');
-Route::get('/', [App\Http\Controllers\ProduitController::class, 'home'])->name('home');
+
 
 require_once __DIR__.'/auth.php';

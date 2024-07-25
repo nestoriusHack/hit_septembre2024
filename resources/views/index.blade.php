@@ -22,6 +22,13 @@
                 <link href="{{ asset('ow/css/owl.carousel.css')}}" rel="stylesheet">
                 <link href="{{ asset('assets/dist/css/bootstrap.min.css')}}" rel="stylesheet">
                 <link href="{{ asset('assets/css/bootstrap.css')}}" rel="stylesheet">
+
+                <link type="text/css" rel="stylesheet" href="{{ asset('assets/elc/slick.css') }}"/>
+                <link type="text/css" rel="stylesheet" href="{{ asset('assets/elc/slick-theme.css') }}"/>
+
+                <!-- nouislider -->
+                <link type="text/css" rel="stylesheet" href="{{ asset('assets/elc/nouislider.min.css')}}">
+
                 <link rel="shortcut icon" href="{{ asset('assets/images/1704666167-Logonew.png') }}" />
 
             </head>

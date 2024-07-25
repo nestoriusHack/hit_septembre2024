@@ -8,74 +8,12 @@
     <section class="py-5">
         <center style="text-align: center"  id="domaines">
             <h2 class="text-dark mdi mdi-domain">
-                <b>NOS DOMANIES DE FORMATION</b>
+                <b>NOS FORMATIONS DISPONIBLES</b>
             </h2>
             <span>Vous pouvez voici ici les <b>domaines</b> dans lesquels intervient HIT-T !</span>
         </center>
-    <section class="py-5">
-
-        <div class="container px-2 px-lg-2 mt-2">
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                @foreach ($produits as $produit)
-                <style>
-                    .card-text {
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        max-height: 50px;
-                        white-space: nowrap;
-                    }
-
-                    .card-text.expanded {
-                        max-height: none;
-                        white-space: normal;
-                    }
-
-                </style>
-
-                <div class="col mb-5">
-                    <div class="card h-100" style="box-shadow: #2222ff62">
-                        <!-- Product image-->
-                        <img class="card-img-top" src="{{ asset('storage/' . $produit->imageproduit) }}" alt="{{ $produit->imageproduit }}" />
-                        <!-- Product details-->
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <!-- Product name-->
-                                <h5 class="fw-bolder ">{{ $produit->nomproduit }}</h5>
-                                <!-- Product price-->
-                                {{ number_format((float) $produit->prixproduit, 2, ',', ' ') }} FCFA
-                            </div>
-                            <div class="text-center">
-                                <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; max-height: 50px;">
-                                    {{ $produit->descriptionproduit }}
-                                </p>
-                                <a href="#"  class="btn btn-link p-0" onclick="toggleDescription(this)">Voir plus</a>
-                            </div>
-                        </div>
-                        <!-- Product actions-->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <form action="{{ route('add.to.cart', $produit->id) }}" method="post">
-                                @csrf
-                                <div class="text-center"><button class="btn btn-outline-submit mt-auto" type="submit">Au Panier</button></div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
-            <script>
-                function toggleDescription(element) {
-                    const cardText = element.previousElementSibling;
-                    if (cardText.classList.contains('expanded')) {
-                        cardText.classList.remove('expanded');
-                        element.textContent = 'Voir plus';
-                    } else {
-                        cardText.classList.add('expanded');
-                        element.textContent = 'Voir moins';
-                    }
-                }
-
-            </script>
+    @include('partials.layouts.backend.formations.index')
+        
     </section>
     {{-- SERVICES --}}
     <section class="py-5">
@@ -101,6 +39,7 @@
                                 <h5 class="fw-bolder">FORMATIONS ACCELEREE</h5>
                                 <!-- Product price-->
                                 $40.00 - $80.00
+                                
                             </div>
                         </div>
                         <!-- Product actions-->
@@ -114,7 +53,7 @@
         </div>
     </section>
     {{-- BOUTIQUES --}}
-    <section class="py-5">
+    {{-- <section class="py-5">
         <section class="py-5">
             <center style="text-align: center"  id="boutiques">
                 <h2 class="text-dark mdi mdi-shopping">
@@ -184,7 +123,7 @@
                     }
 
                 </script>
-    </section>
+    </section> --}}
     {{-- PUBLICITES --}}
     <section class="py-5">
         <center style="text-align: center"  id="pubs">

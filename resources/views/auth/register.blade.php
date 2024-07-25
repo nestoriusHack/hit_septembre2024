@@ -1,4 +1,4 @@
-@extends('partials.inc._useMain')
+@extends('welcome')
 @section('content')
 <x-guest-layout>
     <title>HIT-T | Login</title>
@@ -54,4 +54,4 @@
     </form>
 </x-guest-layout>
 @endsection
-    
+

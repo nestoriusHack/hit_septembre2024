@@ -9,7 +9,7 @@
     <meta name="description" content="HIT ECOMMERCE, HIT,hit,hit service,boutique,togo, togo hit, HIT-TECHNOLOGIES, HIT SERVICES; online SHOP">
     <meta name="author" content="Nestorius_Code">
 
-    <title>HIT - Dashboard</title>
+    <title>HIT - Admin Panel</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">

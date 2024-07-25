@@ -317,20 +317,31 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="search-form">
-                        <form action="" method="GET">
-                            {{ csrf_field() }}
+                        <form>
                             <div class="sf-type">
                                 <div class="sf-input">
-                                    <input type="text" id="sf-box" name="q" placeholder="Rechercher">
+                                    <input type="text" id="sf-box" placeholder="RECHERCHER COURS">
                                 </div>
+                                
+                                <div class="sf-list">
+                                    <ul>
+                                        <li><a href="course-details.html">DEVELOPPEMENT COMMERCIAL DE L’ENTREPRISE</a></li>
+                                        <li><a href="course-details.html">GESTION DES RESSOURCES HUMAINES</a></li>
+                                        <li><a href="course-details.html">GESTION ET DEVELOPPEMENT DE L’ENTREPRISE</a></li>
+                                        <li><a href="course-details.html">Modulaires</a></li>
+                                        <li><a href="course-details.html">Carte</a></li>
+                                        <li><a href="course-details.html">Cours en ligne</a></li>
 
+                                        <li><a href="course-details.html">FORMATIONS MODULAIRES TECHNOLOGIES / TECHNIQUES ET BÂTIMENT</a></li>
+                                        <li><a href="course-details.html">FORMATIONS FILIERES TERTIAIRES</a></li>
+                                        <li><a href="course-details.html">FORMATIONS MODULAIRES DOMAINES SISG, LANGUES ET TRADUCTION</a></li>
+
+                                    </ul>
+                                </div>
                             </div>
                             <div class="sf-submit">
-                                <a class="btn btn-primary" type="submit">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </a>
+                                <input type="submit" value="RECHERCHER">
                             </div>
-
                         </form>
                     </div>
                 </div>

@@ -3,6 +3,11 @@
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
+    @if(session()->get('success'))
+    <div class="alert alert-success">
+      {{ session()->get('success') }}
+    </div><br />
+  @endif
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Listes des produits</h1>
@@ -44,7 +49,7 @@
                             <td>{{ $formation->nom }}</td>
                             <td>{{ $formation->desc }}</td>
                             <td>{{ $formation->prix }}</td>
-                            <td>{{ $formation->photo }} </td>
+                            <td><img width="100" src="{{ asset('storage/' . $formation->photo) }}" alt="{{ $formation->nom }}" /></td>
                             <td><a href="{{ route('formation.edit', $formation->id) }}" class="btn btn-warning">Modifier</a>
                                 <form action="{{ route('formation.destroy', $formation->id) }}" method="POST" style="display:inline-block;">
                                     @csrf

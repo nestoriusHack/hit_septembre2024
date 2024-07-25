@@ -4,79 +4,59 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Formation;
+use App\Models\Categorie;
 
 class FormationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $formations = Formation::all();
         return view('components.admin.formations.listef', compact('formations'));
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        $formations = Formation::all();
-        return view('components.admin.formations.createf', compact('formations'));
+        $categories = Categorie::all();
+        return view('components.admin.formations.createf', compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
-            'nom' => 'requuired|string|max:255',
+            'nom' => 'required|string|max:255',
             'date' => 'required|string',
-            'photo' => 'required|image|nimes:jpeg,png,jpg|max:2048',
+            'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'desc' => 'required|string',
-            'prix' => 'required|numeric|between:0,99999999.99', // Ajout de la validation pour le prix
+            'prix' => 'required|numeric|between:0,99999999.99',
+            'categorie_id' => 'required|exists:categories,id',
         ]);
 
-        // Gérer l'upload de l'image
         if ($request->hasFile('photo')) {
             $photoPath = $request->file('photo')->store('images', 'public');
+        } else {
+            $photoPath = null;
         }
 
-        // Enregistrer le produit dans la base de données
         Formation::create([
             'nom' => $request->nom,
             'desc' => $request->desc,
             'date' => $request->date,
             'photo' => $photoPath,
             'prix' => $request->prix,
+            'categorie_id' => $request->categorie_id,
         ]);
 
-        // Stocker le message de succès dans la session
         return redirect()->back()->with('success', 'Formation ajoutée avec succès!');
-
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $formation = Formation::findOrFail($id);
-        return view('components.admin.formations.editf', compact('formation'));
+        $categories = Categorie::all();
+        return view('components.admin.formations.editf', compact('formation', 'categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         $request->validate([
@@ -85,30 +65,47 @@ class FormationController extends Controller
             'date' => 'required|string',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'prix' => 'required|numeric|between:0,99999999.99',
+            'categorie_id' => 'required|exists:categories,id',
         ]);
 
-        // Récupérer la Fomation
-        $formation = Fomation::findOrFail($id);
-        
-        //photo
+        $formation = Formation::findOrFail($id);
+
         if ($request->hasFile('photo')) {
             $photoPath = $request->file('photo')->store('images', 'public');
-            $formation->photoPath = $photoPath;
+            $formation->photo = $photoPath;
         }
-        
-        // Mettre à jour les autres champs
-        $formation->update($request->except(['photo']));
 
-        return redirect()->route('formation.update')->with('success', 'Formation mis à jour avec succès!');
+        $formation->update($request->except(['photo']));
+        $formation->categorie_id = $request->categorie_id;
+        $formation->save();
+
+        return redirect()->back()->with('success', 'Formation mise à jour avec succès!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $formation = Formation::findOrFail($id);
         $formation->delete();
-        return redirect()->route('formation.destroy')->with('success', 'Formation supprimée avec succès!');
+        return redirect()->back()->with('success', 'Formation supprimée avec succès!');
+    }
+
+    public function show($id)
+    {
+        $formation = Formation::findOrFail($id);
+        return view('partials.layouts.backend.formations.show', compact('formation'));
+
+    }
+
+    public function listCategories()
+    {
+        $categories = Categorie::all();
+        return view('components.admin.categories.index', compact('categories'));
+    }
+
+    public function showCategory($id)
+    {
+        $category = Categorie::findOrFail($id);
+        $formations = Formation::where('categorie_id', $id)->get();
+        return view('partials.layouts.frontend.navebar', compact('category', 'formations'));
     }
 }

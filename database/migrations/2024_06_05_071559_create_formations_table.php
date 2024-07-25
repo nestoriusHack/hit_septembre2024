@@ -11,15 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('formations', function (Blueprint $table) {
-            $table->id();
-            $table->string('nom');
-            $table->string('date');
-            $table->text('desc');
-            $table->string('photo');
-            $table->decimal('prix', 10, 2);
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('formations')) {
+            Schema::create('formations', function (Blueprint $table) {
+                $table->id();
+                $table->string('nom');
+                $table->string('date');
+                $table->text('desc');
+                $table->string('photo')->nullable();
+                $table->number('prix', 10, 2);
+
+                $table->timestamps();
+
+
+            });
+        }
     }
 
     /**

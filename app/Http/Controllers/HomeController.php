@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Categorie;
+use App\Models\Formation;
 class HomeController extends Controller
 {
     /**
@@ -12,11 +14,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $formations = Formation::all();
         if (Auth::id()) {
             $usertype=Auth()->usertype;
 
             if ($usertype=='user') {
-                return view('dashboard');
+                return view('welcome');
             }
             elseif ($usertype=='admin') {
                 return view('components.admin.adminDash');
@@ -29,7 +32,13 @@ class HomeController extends Controller
      */
     public function create()
     {
-        //
+        $formations = Formation::all();
+        return view('welcome', compact('formations'));
+    }
+    public function welcome()
+    {
+        $formations = Formation::all();
+        return view('welcome', compact('formations'));
     }
 
     /**

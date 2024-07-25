@@ -1844,8 +1844,8 @@ label {
 .sf-submit {
     float: inline-end;
     width: 25%;
-    padding-bottom: 5px;
-    padding: 5px;
+    padding-bottom: 15px;
+    padding: 10px;
 
     margin: 0px;
     border-top-left-radius: 2px;
@@ -1858,7 +1858,7 @@ label {
     color: #fff;
     font-weight: 600;
     text-transform: uppercase;
-    padding: 13px;
+    padding: 1px;
     border: 1px solid #002147;
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
