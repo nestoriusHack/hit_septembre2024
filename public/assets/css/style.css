@@ -45,9 +45,33 @@
 /*-------------------------------------------------*/
 /* =  1.All Pages Common CSS Styles
 /*-------------------------------------------------*/
+/* Styles pour les écrans de moins de 768px */
+@media (max-width: 767px) {
+    .main-menu {
+      display: none; /* Masquer le menu principal */
+    }
+
+    .mobile-menu {
+      display: ; /* Afficher le menu mobile */
+    }
+  }
+
+  /* Styles pour les écrans de plus de 768px */
+  @media (min-width: 768px) {
+    .main-menu {
+      display: block;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+  }
+
+
 body {
     font-family: 'Open Sans', sans-serif;
     padding-right: 0px !important;
+    display: flexbox;
 }
 
 a {
@@ -174,7 +198,7 @@ label {
 .wed-logo a {}
 
 .wed-logo a img {
-    width: 150px;
+    width: 100px;
     padding: 7px 0px;
 }
 
@@ -2002,7 +2026,7 @@ label {
 }
 
 .top-logo {
-    padding: 12px;
+    padding: 10px;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -6774,3 +6798,5 @@ input:not(:focus):valid~.floating-label {
 .ad-log-in-con form {}
 
 .ad-log-in-con form input {}
+
+

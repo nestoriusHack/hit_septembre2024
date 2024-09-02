@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Formation;
 use App\Models\Categorie;
+use Illuminate\Support\Facades\Storage;
 
 class FormationController extends Controller
 {
@@ -12,7 +13,7 @@ class FormationController extends Controller
     {
         $formations = Formation::all();
         return view('components.admin.formations.listef', compact('formations'));
-
+        return view('index', compact('formations'));
     }
 
     public function create()
@@ -25,7 +26,7 @@ class FormationController extends Controller
     {
         $request->validate([
             'nom' => 'required|string|max:255',
-            'date' => 'required|string',
+            'date' => 'required|date',
             'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'desc' => 'required|string',
             'prix' => 'required|numeric|between:0,99999999.99',
@@ -49,6 +50,11 @@ class FormationController extends Controller
 
         return redirect()->back()->with('success', 'Formation ajoutée avec succès!');
     }
+        public function showFormations()
+        {
+            $formations = Formation::all();
+            return view('partials.layouts.frontend.welcome', compact('formations'));
+        }
 
     public function edit(string $id)
     {
@@ -57,43 +63,29 @@ class FormationController extends Controller
         return view('components.admin.formations.editf', compact('formation', 'categories'));
     }
 
-    public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'nom' => 'required|string|max:255',
-            'desc' => 'required|string',
-            'date' => 'required|string',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'prix' => 'required|numeric|between:0,99999999.99',
-            'categorie_id' => 'required|exists:categories,id',
-        ]);
-
+    public function update(Request $request, $id) {
+        // dd($request);
         $formation = Formation::findOrFail($id);
+        $formation->update($request->all());
+        return redirect()->route('listes.formation')->with('success', 'Formation mise à jour avec succès.');
 
-        if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('images', 'public');
-            $formation->photo = $photoPath;
-        }
-
-        $formation->update($request->except(['photo']));
-        $formation->categorie_id = $request->categorie_id;
-        $formation->save();
-
-        return redirect()->back()->with('success', 'Formation mise à jour avec succès!');
     }
+
 
     public function destroy(string $id)
     {
         $formation = Formation::findOrFail($id);
+        if ($formation->photo) {
+            Storage::disk('public')->delete($formation->photo);
+        }
         $formation->delete();
         return redirect()->back()->with('success', 'Formation supprimée avec succès!');
     }
 
-    public function show($id)
+    public function show(string $id)
     {
         $formation = Formation::findOrFail($id);
         return view('partials.layouts.backend.formations.show', compact('formation'));
-
     }
 
     public function listCategories()

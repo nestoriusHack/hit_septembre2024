@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AgentController;
 use App\Models\User;
 
 class Role
@@ -17,9 +18,12 @@ class Role
      */
     public function handle(Request $request, Closure $next, $role): Response
     {
-        if($request->user()->role !== $role){
-            return redirect('home');
+        {
+            if ($request->user() && $request->user()->role !== $role) {
+                return redirect()->route('home');;
+            }
+            return $next($request);
         }
-        return $next($request);
     }
+
 }

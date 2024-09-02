@@ -1,4 +1,4 @@
-@extends('partials.layouts.backend.cart.main')
+@extends('index')
 @section('content')
 
 <table id="cart" class="table table-bordered">

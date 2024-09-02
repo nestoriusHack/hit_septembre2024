@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nom');
             $table->string('prenom');
-            $table->string('datenaissance');
+            $table->date('datenaissance');
             $table->string('nationalite');
             $table->string('adresse');
             $table->string('email')->unique();

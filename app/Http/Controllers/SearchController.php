@@ -8,9 +8,8 @@ class SearchController extends Controller
 {
     public function search(Request $request)
         {
-            $query = $request->input('q');
-            $produits = Produit::where('nomproduit', 'like', '%' . $query . '%')->get();
-
-            return view('search_results', compact('produits'));
-        }
+            $query = $request->input('query');
+        // Logique de recherche ici
+        return view('search.results', compact('query'));
+    }
 }

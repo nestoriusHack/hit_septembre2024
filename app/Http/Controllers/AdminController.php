@@ -13,7 +13,7 @@ class AdminController extends Controller
     {
         return view('components.admin.adminDash');
     }
-
+   
     /**
      * Show the form for creating a new resource.
      */

@@ -39,8 +39,8 @@
 
 
                         <div class="collapse-divider">
-                            <a class="collapse-item" href="{{ route('create') }}">Ajout des Produits</a>
-                            <a class="collapse-item" href="{{ route('listes') }}">Listes des Produits</a>
+                            <a class="collapse-item" href="#">Ajout des Produits</a>
+                            <a class="collapse-item" href="#">Listes des Produits</a>
                         </div>
 
                     </div>
@@ -79,8 +79,8 @@
 
 
                         <div class="collapse-divider">
-                            <a class="collapse-item" href="{{ route('create.formation') }}">Ajout de Services</a>
-                             <a class="collapse-item" href="{{ route('listes.formation') }}">Listes des Services</a>
+                            <a class="collapse-item" href="{{ route('create.services') }}">Ajout de Services</a>
+                             <a class="collapse-item" href="{{ route('listes.services') }}">Listes des Services</a>
                         </div>
 
                     </div>
@@ -101,6 +101,46 @@
                         <div class="collapse-divider">
                             <a class="collapse-item" href="{{ route('categories.create') }}">Ajout de Domaines</a>
                              <a class="collapse-item" href="{{ route('categories.index') }}">Listes des Domaines</a>
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+            {{-- etudiant --}}
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseApprenants"
+                    aria-expanded="true" aria-controls="collapseApprenants">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Listes des Apprenants</span>
+                </a>
+                <div id="collapseApprenants" class="collapse" aria-labelledby="" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Apprenants</h6>
+
+
+                        <div class="collapse-divider">
+
+                             <a class="collapse-item" href="{{ route('show.etudiant') }}">Listes des apprenants</a>
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+            {{-- slides --}}
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSlide"
+                    aria-expanded="true" aria-controls="collapseSlide">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Slides</span>
+                </a>
+                <div id="collapseSlide" class="collapse" aria-labelledby="" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Sliders</h6>
+
+
+                        <div class="collapse-divider">
+                            <a class="collapse-item" href="{{ route('slides.create') }}">Ajout des slides</a>
+                             <a class="collapse-item" href="{{ route('slides.index') }}">Listes des slides</a>
                         </div>
 
                     </div>

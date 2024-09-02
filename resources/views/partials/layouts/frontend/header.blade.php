@@ -52,19 +52,20 @@
     </div> --}}
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Wrapper for slides -->
-
+        
         <div class="carousel-inner">
-            <div class="item slider1 active">
-                <img src="{{ asset('assets/images/slider/HIT-T_7.png')}}" alt=""  style=" width: 1400px; height: 700px;">
+            @foreach($slides as $index => $slide)
+            <div class="item slider1 {{ $index == 0 ? 'active' : '' }}">
+                <img src="{{ asset('storage/'.$slide->photo) }}" alt=""  style=" width: 1400px; height: 700px;">
                 <div class="carousel-caption slider-con">
                     <h2><b>Bienvenue a HIT-T Formation</b></h2>
                     {{-- <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p> --}}
                     {{-- <a href="#" class="bann-btn-1">All Courses</a><a href="#" class="bann-btn-2">Read More</a> --}}
                     <a href="frformation" class="bann-btn-1">Formations</a><a href="frdomaine" class="bann-btn-2">Domaines</a>
                 </div>
-
+                
             </div>
-
+            @endforeach
             {{-- @foreach ($slide as $slides) --}}
             <div class="item" >
                 {{-- {{ $slides->photo1}} --}}

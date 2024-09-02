@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
+use App\Models\Formation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -16,6 +17,8 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
+        // $formations = Formation::all(); // Récupère toutes les formations de la base de données
+        // return view('welcome')->with('formations', $formations);
         return view('auth.login');
     }
 
@@ -34,7 +37,7 @@ class AuthenticatedSessionController extends Controller
         }elseif($request->user()->role === "agent"){
             $url = "agent/dashboard";
         }else{
-            $url = "home";
+            $url = "/home";
         }
 
         return redirect()->intended($url);

@@ -9,7 +9,7 @@
 
 
 
-<section class="">
+<section>
     <div class="container com-sp pad-bot-70">
 
         <div class="row wed-foot-link">
@@ -17,42 +17,44 @@
                 {{-- <h4><div class="col-md-2 bb-img">
                     <img src="images/3.png" alt="">
                 </div></h4> --}}
-                <div class="row">
+                <div class="col-md-7">
+                    <label>PUBLIER UNE OFFRE DE PUBLICITES </label>
+                    <h4>
 
-                    <h4>PUBLIER UNE OFFRE DE PUBLICITES </h4>
+                            <form action="{{ ('') }}" method="get">
+                                <center>
+                                    <input type="email" id="newsletterEmail" required placeholder="VOTRE ADRESSE EMAIL" name="newsletteremail">
+                                    <button class="btn-submit"  type="submit" id="">PUBLICITES</button>
+                                </center>
+                            </form>
+
+                    </h4>
+                </div>
+                </div>
+                <div class="col-md-4">
+                    <h4>
+                        <form action="{{ ('subscribers.store') }}" method="post" id="newsletterForm" >
+                            @csrf
+                            <div class="">
+                                <center><label for="newsletterEmail"><h4>SIGN UP FOR NEWSLETTER</h4></label></center>
+                                <input type="email" id="newsletterEmail" required placeholder="ADRESSE EMAIL" name="email">
+                                <center><button class="btn-submit" type="submit" id="subscribeButton">ABONNEZ-VOUS</button></center>
+                            </div>
+                        </form>
+                    </h4>
+
+                </div>
+                <div class="col-md-4">
                     <h4>
                         <center>
-                            <form action="{{ ('') }}" method="get">
-                                <input type="email" id="newsletterEmail" required placeholder="Votre Email" name="newsletteremail">
-                                <button class="btn-submit"  type="submit" id="">PUBLICITES</button>
-
-                            </form>
+                            <div class="col-md-2 bb-img">
+                             <img src="{{ asset('assets/images/3.png') }}" style="width: 100px; align-items: center"  alt="">
+                            </div>
                         </center>
+
                     </h4>
                 </div>
             </div>
-            <div class="col-md-4">
-                <h4>
-                    <form action="{{ ('subscribers.store') }}" method="post" id="newsletterForm" >
-                        @csrf
-                        <div class="">
-                            <center><label for="newsletterEmail"><h4>SIGN UP FOR NEWSLETTER</h4></label></center>
-                            <input type="email" id="newsletterEmail" required placeholder="ADRESSE EMAIL" name="email">
-                            <center><button class="btn-submit" type="submit" id="subscribeButton">ABONNEZ-VOUS</button></center>
-                        </div>
-                    </form>
-               </h4>
-
-            </div>
-            <div class="col-md-4">
-                <h4>
-                    <div class="col-md-2 bb-img">
-                        <img src="{{ asset('assets/images/1711114336-WhatsApp Image 2024-03-05 at 15.48.11.jpeg') }}" style="width: 280px"  alt="">
-                    </div>
-                </h4>
-            </div>
-        </div>
-        <div class="row wed-foot-link-1">
         </div>
     </div>
 </section>

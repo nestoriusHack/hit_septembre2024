@@ -7,39 +7,50 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Categorie;
 use App\Models\Formation;
+use App\Models\Slide;
 class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $formations = Formation::all();
-        if (Auth::id()) {
-            $usertype=Auth()->usertype;
+     public function index()
+{
 
-            if ($usertype=='user') {
-                return view('welcome');
-            }
-            elseif ($usertype=='admin') {
-                return view('components.admin.adminDash');
-            }
+
+    $user = Auth::user();
+    if (Auth::check()) {
+        $usertype = $user->usertype;
+
+        if ($usertype == 'user') {
+            $formations = Formation::all();
+            $slides = Slide::all();
+            return view('welcome', compact('formations', 'slides'));
+
+        } elseif ($usertype == 'admin') {
+            return view('components.admin.adminDash');
         }
     }
+
+    // Si l'utilisateur n'est pas authentifié, vous pouvez rediriger vers une page de connexion ou une autre page
+    return redirect()->route('home');
+    }
+
+    public function home()
+    {
+            $formations = Formation::all();
+            $slides = Slide::all();
+            return view('welcome', compact('formations', 'slides'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        $formations = Formation::all();
-        return view('welcome', compact('formations'));
+
     }
-    public function welcome()
-    {
-        $formations = Formation::all();
-        return view('welcome', compact('formations'));
-    }
+
 
     /**
      * Store a newly created resource in storage.
